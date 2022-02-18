@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+//import all dependencies needed to wire up the Apollo Client
 import {
   ApolloProvider,
   ApolloClient,
@@ -10,14 +11,18 @@ import {
   InMemoryCache
 } from '@apollo/client';
 
+//create the 'httpLink'that connects the client to the GraphQl API.
+//server runs at the uri below
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000'
 });
 
+//instantiate the new ApolloClient by passing 'httpLink' and a new istance of 'InMemoryCache'
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache()
 });
+
 
 ReactDOM.render(
   <ApolloProvider client={client}>

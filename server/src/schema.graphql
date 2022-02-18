@@ -16,6 +16,7 @@ type Feed {
 
 type Mutation {
   post(url: String!, description: String!): Link!
+  deletePost(id: ID!): String
   signup(
     email: String!
     password: String!
